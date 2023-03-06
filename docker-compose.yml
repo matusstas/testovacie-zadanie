@@ -16,6 +16,18 @@ services:
     #   - DB_PORT=27017
     #   - DB_NAME=amcef
     ports:
+      - 8000:80
+
+  ui:
+    build:
+      context: ./ui
+      dockerfile: ./Dockerfile
+    # environment:
+    #   - DB_HOST=db
+    #   - DB_PORT=27017
+    #   - DB_NAME=amcef
+    ports:
       - 80:80
+
     # depends_on:
       # - db

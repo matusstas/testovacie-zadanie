@@ -1,14 +1,14 @@
 # from threading import Thread
-from fastapi import FastAPI, status
+from fastapi import FastAPI, status, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 # from fastapi.responses import HTMLResponse
 # import requests
 # from fastapi import FastAPI, Request
-# from fastapi.responses import HTMLResponse
-# from fastapi.staticfiles import StaticFiles
-# from fastapi.templating import Jinja2Templates
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 # from fastapi.middleware.cors import CORSMiddleware
 # from fastapi.responses import RedirectResponse
 # import json
@@ -33,6 +33,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Mount templates and static files
+templates = Jinja2Templates(directory="src/templates")
+app.mount("/static", StaticFiles(directory="src/static"), name="static")
+
+
 @app.get("/", tags=["Root"])
 async def root():
     """
@@ -41,6 +46,14 @@ async def root():
 
     content = {
         "status": "success",
-        "message": "Hello World from server container!",
+        "message": "Hello World from ui container!",
     }
     return JSONResponse(status_code=status.HTTP_200_OK, content=content)
+
+
+@app.get("/home", response_class=HTMLResponse)
+async def home(request: Request):
+    """
+    todo
+    """
+    return templates.TemplateResponse("posts.html", {"request": request})
