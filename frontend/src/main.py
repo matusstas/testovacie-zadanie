@@ -64,13 +64,4 @@ async def home(request: Request):
     """
     todo
     """
-    return templates.TemplateResponse("post-old.html", {"request": request})
-
-
-# todo
-@app.get("/base", response_class=HTMLResponse)
-async def home(request: Request):
-    """
-    todo
-    """
-    return templates.TemplateResponse("child.html", {"request": request})
+    return templates.TemplateResponse("post.html", {"request": request})
