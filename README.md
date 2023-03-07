@@ -22,3 +22,4 @@ swagger documentation is here
 * Bootstrap as a front-end framework
 * Responsive web design
 * Client-side validation
+* Jinja2 API with Template Inheritance included

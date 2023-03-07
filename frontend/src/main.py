@@ -34,7 +34,7 @@ app.add_middleware(
 )
 
 # Mount templates and static files
-templates = Jinja2Templates(directory="src/templates")
+templates = Jinja2Templates(directory="src/static/templates")
 app.mount("/static", StaticFiles(directory="src/static"), name="static")
 
 
@@ -64,4 +64,13 @@ async def home(request: Request):
     """
     todo
     """
-    return templates.TemplateResponse("post.html", {"request": request})
+    return templates.TemplateResponse("post-old.html", {"request": request})
+
+
+# todo
+@app.get("/base", response_class=HTMLResponse)
+async def home(request: Request):
+    """
+    todo
+    """
+    return templates.TemplateResponse("child.html", {"request": request})
