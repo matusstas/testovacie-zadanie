@@ -19,3 +19,6 @@ docker-compose stop
 swagger documentation is here
 /docs
 
+* Bootstrap as a front-end framework
+* Responsive web design
+* Client-side validation

@@ -20,7 +20,7 @@ services:
 
   ui:
     build:
-      context: ./ui
+      context: ./frontend
       dockerfile: ./Dockerfile
     # environment:
     #   - DB_HOST=db
