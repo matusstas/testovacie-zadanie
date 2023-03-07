@@ -50,10 +50,18 @@ async def root():
     }
     return JSONResponse(status_code=status.HTTP_200_OK, content=content)
 
-
-@app.get("/home", response_class=HTMLResponse)
+# todo
+@app.get("/posts", response_class=HTMLResponse)
 async def home(request: Request):
     """
     todo
     """
     return templates.TemplateResponse("posts.html", {"request": request})
+
+# todo
+@app.get("/post", response_class=HTMLResponse)
+async def home(request: Request):
+    """
+    todo
+    """
+    return templates.TemplateResponse("post.html", {"request": request})
