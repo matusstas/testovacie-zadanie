@@ -1,0 +1,19 @@
+.card-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.card-text {
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 100px;
+}
+
+/* Same dimension as todo */
+#buttonAdd {
+    width: 56px;
+    height: 40px;
+}

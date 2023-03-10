@@ -1,27 +1,37 @@
 $(document).ready(function() {
     // When page is loaded then replace \n with \r\n -> new line
-    var body = document.getElementById('validationBody').value;
+    var body = document.getElementById('formBody').value;
     body = body.replace(/\\n/g, '\r\n');
-    document.getElementById("validationBody").value = body;
+    document.getElementById("formBody").value = body;
 
-    // https://getbootstrap.com/docs/5.0/forms/validation/?
-    (function () {
-        'use strict'
+    https://getbootstrap.com/docs/5.0/forms/validation/?
+    $('form').on("submit", function(){
+        var id = parseInt(document.getElementById("formId").value);
+        var userId = parseInt(document.getElementById("formUserId").value);
+        var title = document.getElementById("formTitle").value;
+        var body = document.getElementById('formBody').value;
 
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.querySelectorAll('.needs-validation')
+        var post = {
+            "id": id,
+            "userId": userId,
+            "title": title,
+            "body": body,
+        }
 
-        // Loop over them and prevent submission
-        Array.prototype.slice.call(forms)
-            .forEach(function (form) {
-                form.addEventListener('submit', function (event) {
-                    if (!form.checkValidity()) {
-                    event.preventDefault()
-                    event.stopPropagation()
-                    }
-
-                form.classList.add('was-validated')
-            }, false)
+        $.ajax({
+            type: 'PUT',
+            url: '/posts/' + id,
+            data: JSON.stringify(post),
         })
-    })()
+    });
 });
+
+
+function deletePost(id) {
+    fetch('/posts/' + id, {
+        method: 'DELETE',
+    }).then(function(){
+        window.location.reload();
+        window.location.href = '/posts';
+    });
+}

@@ -6,6 +6,7 @@ How to run
 
 ```bash
 docker-compose up -d --build
+docker-compose up -d --build --force-recreate
 ```
 
 d = detached mode
